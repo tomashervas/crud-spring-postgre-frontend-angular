@@ -2,18 +2,31 @@
     <form [formGroup]="newProductForm" (ngSubmit)="onSubmit()" 
         class="flex flex-col p-4">
 
-        <div class="flex flex-col space-y-2 max-w-lg border-b border-slate-500 mb-8">
+        <div class="flex flex-col space-y-2 max-w-lg mb-8">
           <label for="name">
             Name
           </label>
-          <input id="name" type="text" formControlName="name" class="bg-slate-700 text-slate-400">
+          <input id="name" type="text" formControlName="name" class="bg-slate-700 border-b border-slate-500 text-slate-400">
+            <div *ngIf="name?.touched">
+                <div *ngIf="name?.errors?.['required']" class="text-red-400 text-sm">
+                Name is required.
+                </div>
+                <div *ngIf="name?.errors?.['minlength']" class="text-red-400 text-sm">
+                    Name must be at least 3 characters long.
+                </div>
+            </div>
         </div>
       
-        <div class="flex flex-col space-y-2 max-w-lg border-b border-slate-500 mb-8">
+        <div class="flex flex-col space-y-2 max-w-lg mb-8">
           <label for="price">
             Price
           </label>
-          <input id="price" type="text" formControlName="price" class="bg-slate-700 text-slate-400">
+          <input id="price" type="text" formControlName="price" class="bg-slate-700 border-b border-slate-500 text-slate-400">
+            <div *ngIf="price?.touched">
+              <div *ngIf="price?.errors?.['required']" class="text-red-400 text-sm">
+                Price is required.
+              </div>
+            </div>
         </div>
       
         <button class="button" type="submit" [disabled]="!newProductForm.valid" 

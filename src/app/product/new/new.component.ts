@@ -20,6 +20,9 @@ export class NewComponent implements OnInit {
     price: [null, Validators.required]
   })
 
+  get name() { return this.newProductForm.get('name'); }
+  get price() { return this.newProductForm.get('price'); }
+
   constructor(private productService: ProductService,
               private toast: ToastrService,
               private router: Router,
@@ -41,7 +44,7 @@ export class NewComponent implements OnInit {
     this.productService.addProduct(product).subscribe({
       next: () => {
         this.newProductForm.reset();
-        this.toast.success('Product added successfully');
+        this.toast.success('Product added successfully','Product',{timeOut:3000, positionClass: 'toast-bottom-center'});
         this.router.navigate(['/home']);
       },
       error: (err) => {
