@@ -1,1 +1,24 @@
-<p>new works!</p>
+<div class="container mx-auto">
+    <form [formGroup]="newProductForm" (ngSubmit)="onSubmit()" 
+        class="flex flex-col p-4">
+
+        <div class="flex flex-col space-y-2 max-w-lg border-b border-slate-500 mb-8">
+          <label for="name">
+            Name
+          </label>
+          <input id="name" type="text" formControlName="name" class="bg-slate-700 text-slate-400">
+        </div>
+      
+        <div class="flex flex-col space-y-2 max-w-lg border-b border-slate-500 mb-8">
+          <label for="price">
+            Price
+          </label>
+          <input id="price" type="text" formControlName="price" class="bg-slate-700 text-slate-400">
+        </div>
+      
+        <button class="button" type="submit" [disabled]="!newProductForm.valid" 
+        class="disabled:text-slate-500 disabled:border-slate-600 border border-slate-300 py-2 rounded-lg hover:bg-slate-300 hover:text-slate-700">Purchase</button>
+      
+      </form>
+
+</div>

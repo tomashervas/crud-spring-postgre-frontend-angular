@@ -18,13 +18,15 @@ export class ListComponent implements OnInit {
   }
 
   listProducts() {
-    this.productService.getProducts().subscribe(products => {
+    this.productService.getProducts().subscribe({
+      next: products => {
       this.products = products
       console.log(products)
     },
-      error => {
+      error: error => {
         console.log(error)
-      });
+      }
+    });
   }
 
 }
