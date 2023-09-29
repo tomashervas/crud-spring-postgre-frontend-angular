@@ -14,19 +14,30 @@ export class ProductFormComponent {
 
   @Input() type: string = '';
   @Input() action: any;
+  @Input() product: Product = {name:'', price:0}
+
 
   productForm = this.formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
-    price: [null, Validators.required]
+    price: [0, Validators.required]
   })
 
   get name() { return this.productForm.get('name'); }
   get price() { return this.productForm.get('price'); }
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    private productService: ProductService,
+    private toast: ToastrService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
-    
+    if(this.type=="update"){
+      this.productForm.patchValue({
+        name: this.product.name,
+        price: this.product.price
+      })
+    }
   }
 
   onSubmit() {

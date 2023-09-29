@@ -18,7 +18,6 @@ export class NewComponent {
               private router: Router) { }
 
   addProduct(form: FormGroup) {
-    console.log('hola desde del padre')
     const product: Product = {
       name: form.value.name!,
       price: form.value.price!

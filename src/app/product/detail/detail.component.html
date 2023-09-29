@@ -15,4 +15,7 @@
         <button type="button" (click)="dismiss()" class="py-1 px-4 border border-slate-100 rounded-lg
         hover:bg-slate-300 hover:text-slate-700">cancel</button>
     </div>
+    <div *ngIf="showUpdate">
+        <app-update [product]="prod"></app-update>
+    </div>
 </div>

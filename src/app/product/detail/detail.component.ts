@@ -17,6 +17,7 @@ export class DetailComponent implements OnInit {
   }
 
   confirmed: boolean = false
+  showUpdate: boolean = false
 
   constructor(private route: ActivatedRoute,
               private prodService: ProductService,
@@ -35,7 +36,7 @@ export class DetailComponent implements OnInit {
   }
 
   edit() {
-    console.log('hola')
+    this.showUpdate = !this.showUpdate
   }
 
   delete() {
