@@ -2,6 +2,17 @@
     <h2 class="text-xl">Product:</h2>
     <p>{{prod.name}}</p>
     <p>{{prod.price}} €</p>
-    <button type="button" (click)="edit()" class="py-1 px-4 border border-slate-300 rounded-lg self-end
-    hover:bg-slate-300 hover:text-slate-700">edit</button>
+    <div *ngIf="!confirmed" class="self-end space-x-2">
+        <button type="button" (click)="edit()" class="py-1 px-4 border border-slate-300 rounded-lg self-end
+        hover:bg-slate-300 hover:text-slate-700">edit</button>
+        <button type="button" (click)="delete()" class="py-1 px-4 border border-red-300 rounded-lg self-end
+        hover:bg-red-300 hover:text-slate-700">delete</button>
+    </div>
+    <div *ngIf="confirmed" class="self-end space-x-2">
+        <p class="text-red-400 py-3 text-lg">Are you sure?</p>
+        <button type="button" (click)="confirmDelete()" class="py-1 px-4 border border-slate-500 rounded-lg
+        hover:bg-slate-300 hover:text-slate-700">OK</button>
+        <button type="button" (click)="dismiss()" class="py-1 px-4 border border-slate-100 rounded-lg
+        hover:bg-slate-300 hover:text-slate-700">cancel</button>
+    </div>
 </div>

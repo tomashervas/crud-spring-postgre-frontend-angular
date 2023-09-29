@@ -11,6 +11,7 @@ import { NewComponent } from './product/new/new.component';
 import { UpdateComponent } from './product/update/update.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductFormComponent } from './product/product-form/product-form.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     ListComponent,
     DetailComponent,
     NewComponent,
-    UpdateComponent
+    UpdateComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,

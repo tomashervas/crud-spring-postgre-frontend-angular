@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Product } from 'src/app/interfaces';
 import { ProductService } from 'src/app/service/product.service';
@@ -16,7 +16,12 @@ export class DetailComponent implements OnInit {
     price: 0
   }
 
-  constructor(private route: ActivatedRoute, private prodService: ProductService) { }
+  confirmed: boolean = false
+
+  constructor(private route: ActivatedRoute,
+              private prodService: ProductService,
+              private router: Router,
+) { }
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
@@ -32,5 +37,20 @@ export class DetailComponent implements OnInit {
   edit() {
     console.log('hola')
   }
+
+  delete() {
+    this.confirmed = true
+  }
+
+  dismiss(){
+    this.confirmed = false
+  }
+  
+  confirmDelete(){
+    this.prodService.deleteProduct(this.prod.id!).subscribe()
+    this.router.navigate(['/home'])
+
+  }
+
 
 }
