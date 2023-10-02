@@ -5,7 +5,7 @@
             <label for="name">
             Name
           </label>
-          <input id="name" type="text" formControlName="name" class="bg-slate-700 border-b border-slate-500 text-slate-400">
+          <input id="name" type="text" formControlName="name" placeholder="product name" class="bg-slate-700 border-b border-slate-500 text-slate-400">
             <div *ngIf="name?.touched">
                 <div *ngIf="name?.errors?.['required']" class="text-red-400 text-sm">
                 Name is required.
@@ -20,7 +20,7 @@
           <label for="price">
             Price
           </label>
-          <input id="price" type="number" formControlName="price" class="bg-slate-700 border-b border-slate-500 text-slate-400">
+          <input id="price" type="number" formControlName="price" placeholder="5" class="bg-slate-700 border-b border-slate-500 text-slate-400">
             <div *ngIf="price?.touched">
               <div *ngIf="price?.errors?.['required']" class="text-red-400 text-sm">
                 Price is required.

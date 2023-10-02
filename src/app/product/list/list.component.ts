@@ -24,7 +24,7 @@ export class ListComponent implements OnInit {
       console.log(products)
     },
       error: error => {
-        console.log(error)
+        console.error(error)
       }
     });
   }
