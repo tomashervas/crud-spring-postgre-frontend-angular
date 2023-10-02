@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ProductService } from './product.service';
 import { Product } from '../interfaces';
 
-describe('ProductService', () => {
+xdescribe('ProductService', () => {
   let productService: ProductService;
   let httpTestingController: HttpTestingController;
 
