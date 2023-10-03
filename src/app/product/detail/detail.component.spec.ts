@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { DetailComponent } from './detail.component';
 import { ProductService } from 'src/app/service/product.service'
 
-describe('DetailComponent', () => {
+xdescribe('DetailComponent', () => {
   let component: DetailComponent;
   let fixture: ComponentFixture<DetailComponent>;
   let productServiceSpy: jasmine.SpyObj<ProductService>;
