@@ -5,6 +5,15 @@ import { ProductService } from 'src/app/service/product.service';
 import { of, throwError } from 'rxjs';
 import { Product } from 'src/app/interfaces';
 
+import { Directive, Input } from '@angular/core';
+
+@Directive({
+  selector: '[routerLink]'
+})
+export class RouterLinkDirectiveStub {
+  @Input('routerLink') linkParams: any;
+}
+
 xdescribe('ListComponent', () => {
   let component: ListComponent;
   let fixture: ComponentFixture<ListComponent>;
@@ -14,7 +23,7 @@ xdescribe('ListComponent', () => {
     const productServiceSpy = jasmine.createSpyObj('ProductService', ['getProducts']);
 
     TestBed.configureTestingModule({
-      declarations: [ListComponent],
+      declarations: [ListComponent, RouterLinkDirectiveStub],
       providers: [
         { provide: ProductService, useValue: productServiceSpy }
       ]
@@ -59,4 +68,17 @@ xdescribe('ListComponent', () => {
       { id: 2, name: 'Product 2', price: 200 },
       { id: 3, name: 'Product 3', price: 300 }
     ];
+    productServiceStub.getProducts.and.returnValue(of(mockProducts));
+    fixture.detectChanges();
+
+    const liElements = fixture.nativeElement.querySelectorAll('li');
+    expect(liElements.length).toBe(3);
+    for (let i = 0; i < mockProducts.length; i++) {
+      const product = mockProducts[i];
+      const listItem = liElements[i];
+      expect(listItem.textContent).toContain(product.name);
+      expect(listItem.textContent).toContain(product.price.toString());
+    }
+  })
+
 });

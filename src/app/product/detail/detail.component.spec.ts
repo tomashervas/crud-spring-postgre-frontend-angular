@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { DetailComponent } from './detail.component';
 import { ProductService } from 'src/app/service/product.service'
 
-xdescribe('DetailComponent', () => {
+describe('DetailComponent', () => {
   let component: DetailComponent;
   let fixture: ComponentFixture<DetailComponent>;
   let productServiceSpy: jasmine.SpyObj<ProductService>;
@@ -40,7 +40,6 @@ xdescribe('DetailComponent', () => {
     component = fixture.componentInstance;
     productServiceSpy = TestBed.inject(ProductService) as jasmine.SpyObj<ProductService>;
     router = TestBed.inject(Router);
-    //fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -82,6 +81,26 @@ xdescribe('DetailComponent', () => {
     expect(productServiceSpy.deleteProduct).toHaveBeenCalledWith(1);
     expect(router.navigate).toHaveBeenCalledWith(['/home']);
   })
+
+  it('should display product details in the template', () => {
+    productServiceSpy.getProduct.and.returnValue(of(mockProduct));
+    component.ngOnInit();
+    fixture.detectChanges();
+
+    // const compiled = fixture.nativeElement;
+    // const pElements = compiled.querySelectorAll('p');
+    // expect(pElements[0].textContent).toContain(mockProduct.name);
+    // expect(pElements[1].textContent).toContain(mockProduct.price);
+
+    const compiled = fixture.nativeElement;
+    const productNameElement = compiled.querySelector('[data-test-name="product-name"]');
+    const productPriceElement = compiled.querySelector('[data-test-name="product-price"]');
+
+    expect(productNameElement.textContent).toContain(mockProduct.name);
+    console.log(productPriceElement.textContent);
+    expect(productPriceElement.textContent).toContain(mockProduct.price);
+
+  });
 
 
 });

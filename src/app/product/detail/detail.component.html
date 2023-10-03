@@ -1,7 +1,7 @@
 <div class="container mx-auto p-4 space-y-3 flex flex-col">
     <h2 class="text-xl">Product:</h2>
-    <p>{{prod.name}}</p>
-    <p>{{prod.price}} €</p>
+    <p data-test-name="product-name">{{prod.name}}</p>
+    <p data-test-name="product-price">{{prod.price}} €</p>
     <div *ngIf="!confirmed" class="self-end space-x-2">
         <button type="button" (click)="edit()" class="py-1 px-4 border border-slate-300 rounded-lg self-end
         hover:bg-slate-300 hover:text-slate-700">edit</button>
